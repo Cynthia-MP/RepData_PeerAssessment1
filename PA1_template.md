@@ -133,6 +133,28 @@ ggplot(data = mean_interval  , aes(x = interval, y = mean_steps_interval))+
 
 ![](PA1_template_files/figure-html/time_series2-1.png)<!-- -->
 
+
+## Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
+
+
+```r
+max_interval <- activity_data %>%
+        group_by(interval) %>%
+        summarize(sum_steps = sum(steps, na.rm = TRUE))
+
+## Show interval with the most steps
+max_interval[which.max(max_interval$sum_steps), ]
+```
+
+```
+## # A tibble: 1 x 2
+##   interval sum_steps
+##      <int>     <int>
+## 1      835     10927
+```
+
+
 ## Imputing missing values
 
 ### Counting NA values in the steps and interval variables. 
